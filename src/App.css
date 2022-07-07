@@ -1,0 +1,30 @@
+.App-header{
+  margin: 0 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-logo{
+  color: rgb(18, 215, 159);
+}
+
+.nav-items {
+  display: flex;
+  list-style: none;
+}
+
+.nav-items > li {
+  padding: 20px 50px;
+}
+
+.nav-items > li:hover {
+  background-color: aquamarine;
+}
+
+footer{
+  font-weight: bold;
+  background-color: lightgrey;
+  padding: 10px;
+  text-align: center;
+}
