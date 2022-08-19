@@ -2,25 +2,17 @@ import React from "react";
 
 function Header(){
     return (
-        <header className="App-header">
+      <header className="App-header">
         <h1>
-          <span className="material-icons app-logo">quiz</span> 
-          &nbsp; T-Quiz
+          <span className="material-icons app-logo">box</span> 
+          <img src="" className="App-logo" alt="" />
+          My Salon
         </h1>
         <ul className='nav-items'>
-          <li>Home</li>
-          <li class="dropdown">
-            <span>Contests</span>
-            <i class="material-icons">arrow_drop_down</i>
-            <div class="dropdown-content">
-              <span>Link 1</span>
-              <span>Link 2</span>
-              <span>Link 3</span>
-            </div>
-          </li>
+          <li>Services</li>
+          <li>Offers</li>
           <li>About</li>
         </ul>
-        {/* <img src="" className="App-logo" alt="logo" /> */}
       </header>
     );
 }

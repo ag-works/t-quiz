@@ -59,6 +59,39 @@
   display: block;
 }
 
+.services-container h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.services {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+}
+
+.service-card {
+  display: block;
+  background-color: rgb(247, 232, 212);
+  border: 1px solid #787474;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 20px 10px;
+  width: 200px;
+}
+
+.service-card .service-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.service-card .service-cost, .service-card .service-rating {
+  padding: 10px 0;
+}
+
+
 footer{
   font-weight: bold;
   background-color: lightgrey;
