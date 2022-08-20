@@ -4,7 +4,7 @@ import serviceList from "../data/services";
 
 function Content(){
     const services = serviceList.map(service => {
-        return <Service title={service.name} rating={service.rating} cost={service.cost}  />
+        return <Service key={service.name} title={service.name} rating={service.rating} cost={service.cost}  />
     })
 
     return (
