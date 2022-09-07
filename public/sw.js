@@ -1,15 +1,16 @@
 var STATIC_CACHE = "static";
 var DYNAMIC_CACHE = "dynamic";
+var STATIC_FILES = [
+  "/index.html",
+  "/main.js"
+];
 
 self.addEventListener("install", event => {
   console.log("Service Worker is being installed!", event);
   event.waitUntil(caches.open(STATIC_CACHE)
     .then(cache => {
       console.log("[Service Worker] Pre-caching App Shell!");
-      cache.addAll([
-        "/index.html",
-        "/main.js"
-      ]);
+      cache.addAll(STATIC_FILES);
     }));
 });
 
@@ -27,6 +28,21 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener('fetch', event => {
+  if(event.request.url.indexOf("some-uri") > -1){
+    caches.open(DYNAMIC_CACHE)
+      .then(cache => {
+        return fetch(event.request)
+          .then(res => {
+            cache.put(event.request.url, res.clone());
+            return res;
+          });
+      });
+  } else if(STATIC_FILES.includes(event.request.url)){
+    // Cache-only strategy for static assets
+    event.respondWith(
+      caches.match(event.request)
+    );
+  } else {
     event.respondWith(
       caches.match(event.request)
         .then(response => {
@@ -40,8 +56,17 @@ self.addEventListener('fetch', event => {
                     cache.put(event.request.url, res.clone());
                     return res;
                   })
+              })
+              .catch(err => {
+                return caches.open(STATIC_CACHE)
+                  .then(cache => {
+                    if(event.request.headers.get("accept").includes("text/html")){
+                      return cache.match("/offline.html");
+                    }
+                  })
               });
           }
         })
     );
+  }
 });
